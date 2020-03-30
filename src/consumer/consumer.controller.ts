@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { ConsumerService } from './consumer.service';
+import { Consumer } from "./models/consumer.interface";
 import { ConsumerDto } from './models/consumer.dto';
 
 @Controller('consumer')
@@ -15,16 +16,9 @@ export class ConsumerController {
   }
 
   @Get('todos')
-  pegarPerfis(): string {
-    let retorno = 'ok';
+  async getAll(): Promise<Consumer[]> {
+    return this.consumerService.getAll();
 
-    this.consumerService.all().then(res => {
-      console.log(res)
-    }).catch(err => {
-      retorno = 'Erro!';
-    })
-
-    return retorno;
   }
 
 }

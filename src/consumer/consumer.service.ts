@@ -15,7 +15,7 @@ export class ConsumerService {
         return createdConsumer.save();
     }
 
-    async all(): Promise<Consumer[]>{
-        return this.consumerModel.find().exec();
+    async getAll() {
+        return await this.consumerModel.find().exec();
     }
 }
