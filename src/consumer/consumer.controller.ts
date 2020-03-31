@@ -1,24 +1,24 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Body, Post, Param } from '@nestjs/common';
 import { ConsumerService } from './consumer.service';
-import { Consumer } from "./models/consumer.interface";
 import { ConsumerDto } from './models/consumer.dto';
 
 @Controller('consumer')
 export class ConsumerController {
   constructor(private readonly consumerService: ConsumerService ) {}
 
-  @Get('perfil')
-  getPerfil(): string {
-    let x: ConsumerDto = new ConsumerDto('Alefe', 22, '');
-    this.consumerService.create(x);
-
-    return 'ok'
+  @Post('cadastro')
+  async cadastrar(@Body() consumerDto: ConsumerDto): Promise<ConsumerDto> {
+    return this.consumerService.create(consumerDto);
   }
 
   @Get('todos')
-  async getAll(): Promise<Consumer[]> {
+  async getAll(): Promise<ConsumerDto[]> {
     return this.consumerService.getAll();
+  }
 
+  @Get('/:id')
+  async pegarPerfil(@Param('id') id: string): Promise<ConsumerDto>{
+    return this.consumerService.pegarPerfil(id);
   }
 
 }
