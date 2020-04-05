@@ -9,7 +9,20 @@ export const EstablishmentSchema = new mongoose.Schema({
     endereço: String,
     nrDocumento: String,
     descricao: String,
-    // valores: [ValoresDto],
-    // configuracoes: ConfiguracoesDto,
-    // horarios: [HorariosDto]
+    valores: [{
+        servico: String,
+        preco: String
+    }],
+    configuracoes: {
+        inicio: String,
+        fim: String,
+        duracao: String,
+        expediente: [Number]
+    },
+    horarios: [{
+        horario: Number,
+        disponivel: Boolean,
+        cliente: String,
+        formaPgto: String,
+    }]
 });
