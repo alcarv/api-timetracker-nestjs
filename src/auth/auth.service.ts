@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose'
 import { ConsumerDto } from "../models/dto/consumer.dto";
 import { EstablishmentDto } from "src/models/dto/establishment.dto";
+import { LoginDto } from "src/models/dto/login.dto";
 
 @Injectable()
 export class AuthService {
@@ -30,7 +31,11 @@ export class AuthService {
         return await this.establishmentModel.findById(id).exec();
     }
 
-    async compLoginEstab(imail: String, senha: String): Promise<EstablishmentDto> {
-        return await this.establishmentModel.find({email : imail, pswd : senha}).exec();
+    async compLoginEstab(loginDto: LoginDto): Promise<EstablishmentDto> {
+        return await this.establishmentModel.find({email : loginDto.email, pswd : loginDto.pswd}).exec();
+    }
+
+    async compLoginConsumer(loginDto: LoginDto): Promise<ConsumerDto> {
+        return await this.consumerModel.find({email : loginDto.email, pswd : loginDto.pswd}).exec();
     }
 }
