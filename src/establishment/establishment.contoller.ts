@@ -1,18 +1,18 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { EstablishmentService } from './establishment.service';
-import { Establishment } from '../models/establishment.schema'
+import { EstablishmentDto } from 'src/models/dto/establishment.dto';
 
-@Controller('establishment')
+@Controller('estabelecimento')
 export class EstablishmentController {
   constructor(private readonly establishmentService: EstablishmentService) {}
 
-  @Post()
-  async create(@Body() establishment: Establishment): Promise<Establishment> {
-    return this.establishmentService.create(establishment);
+  @Get('/:tipo')
+  async getByType(@Param('tipo') tipo: string): Promise<EstablishmentDto[]> {
+    return this.establishmentService.pegarPorTipo(tipo);
   }
 
-  @Get(':getArrTipo')
-  async getByType(@Param('arrTipo') arrTipo: []) : Promise<Establishment> {
-    return this.establishmentService.getByType(arrTipo)
+  @Get('/:id')
+  async getById(@Param('id') id: string): Promise<EstablishmentDto> {
+    return this.establishmentService.pegarPorId(id); 
   }
 }
