@@ -2,6 +2,8 @@ import * as mongoose from 'mongoose';
 
 export const EstablishmentSchema = new mongoose.Schema({
     nome: String,
+    email:String,
+    pswd: String,
     arrTipo: [String],
     endereço: String,
     nrDocumento: String,

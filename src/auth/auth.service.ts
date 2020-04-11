@@ -29,4 +29,8 @@ export class AuthService {
     async pegarPerfilEstab(id: string): Promise<EstablishmentDto>{
         return await this.establishmentModel.findById(id).exec();
     }
+
+    async compLoginEstab(imail: String, senha: String): Promise<EstablishmentDto> {
+        return await this.establishmentModel.find({email : imail, pswd : senha}).exec();
+    }
 }

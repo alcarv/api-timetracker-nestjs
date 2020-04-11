@@ -1,5 +1,7 @@
 export class EstablishmentDto {
     nome: String;
+    email: String;
+    pswd: String;
     arrTipo: [String];
     endereço: String;
     nrDocumento: String;
