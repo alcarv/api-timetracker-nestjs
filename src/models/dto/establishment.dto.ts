@@ -18,9 +18,9 @@ export class EstablishmentDto {
     };
     horarios: [{
         dia: Date;
-        horario: Number;
-        disponivel: Boolean;
+        horario: String;
         cliente: String;
+        email: String;
         formaPgto: String;
     }]
 }

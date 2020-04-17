@@ -20,9 +20,9 @@ export const EstablishmentSchema = new mongoose.Schema({
     },
     horarios: [{
         dia: Date,
-        horario: Number,
-        disponivel: Boolean,
+        horario: String,
         cliente: String,
+        email: String,
         formaPgto: String,
     }]
 });
