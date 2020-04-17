@@ -31,7 +31,12 @@ export class AuthController {
 
   @Post('estabelecimento/login')
   async compLoginEstab(@Body() logindto: LoginDto): Promise<EstablishmentDto> {
-    return this.authService.compLoginEstab(logindto.email, logindto.pswd)
+    return this.authService.compLoginEstab(logindto)
+  }
+
+  @Post('consumidor/login')
+  async compLoginConsumer(@Body() logindto: LoginDto): Promise<ConsumerDto> {
+    return this.authService.compLoginConsumer(logindto)
   }
 
 }
