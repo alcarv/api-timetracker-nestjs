@@ -14,9 +14,14 @@ export class EstablishmentController {
     return this.establishmentService.pegarTodosOstipos();
   }
 
+  @Get('/filtro/tipo/:filtro')
+  async getTypesFiltered(@Param('filtro') filtro: string): Promise<TypeDto[]> {
+    return this.establishmentService.filtrarTipos(filtro.toLowerCase());
+  }
+
   @Get('/:tipo')
   async getByType(@Param('tipo') tipo: string): Promise<EstablishmentDto[]> {
-    return this.establishmentService.pegarPorTipo(tipo);
+    return this.establishmentService.pegarPorTipo(tipo.toLowerCase());
   }
 
   @Get('id/:id')
