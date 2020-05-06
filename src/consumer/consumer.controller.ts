@@ -1,30 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post, Body} from '@nestjs/common';
 import { ConsumerService } from './consumer.service';
-import { ConsumerDto } from './models/consumer.dto';
+import { Reserva } from 'src/models/dto/reserva.dto';
+import { GenericMessage } from 'src/models/dto/genericMessage.dto';
 
-@Controller('consumer')
+@Controller('/consumidor')
 export class ConsumerController {
-  constructor(private readonly consumerService: ConsumerService ) {}
 
-  @Get('perfil')
-  getPerfil(): string {
-    let x: ConsumerDto = new ConsumerDto('Alefe', 22, '');
-    this.consumerService.create(x);
+  constructor(
+    private consumerService: ConsumerService
+  ) {}
 
-    return 'ok'
-  }
-
-  @Get('todos')
-  pegarPerfis(): string {
-    let retorno = 'ok';
-
-    this.consumerService.all().then(res => {
-      console.log(res)
-    }).catch(err => {
-      retorno = 'Erro!';
-    })
-
-    return retorno;
+  @Post('/reserva')
+  async addTipos(@Body() reserva: Reserva): Promise<GenericMessage> {
+    return this.consumerService.reservarHorario(reserva);
   }
 
 }

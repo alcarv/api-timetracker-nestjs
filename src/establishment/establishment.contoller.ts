@@ -1,12 +1,41 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { EstablishmentService } from './establishment.service';
+import { EstablishmentDto } from 'src/models/dto/establishment.dto';
+import { TypeDto } from 'src/models/dto/type.dto';
+import { Reserva } from 'src/models/dto/reserva.dto';
+import { GenericMessage } from 'src/models/dto/genericMessage.dto';
 
-@Controller('establishment')
+@Controller('estabelecimento')
 export class EstablishmentController {
   constructor(private readonly establishmentService: EstablishmentService) {}
 
-  @Get()
-  findAll(): string {
-    return this.establishmentService.getAll();
+  @Get('/tipos')
+  async getAllTypes(): Promise<TypeDto[]> {
+    return this.establishmentService.pegarTodosOstipos();
+  }
+
+  @Get('/filtro/tipo/:filtro')
+  async getTypesFiltered(@Param('filtro') filtro: string): Promise<TypeDto[]> {
+    return this.establishmentService.filtrarTipos(filtro.toLowerCase());
+  }
+
+  @Get('/:tipo')
+  async getByType(@Param('tipo') tipo: string): Promise<EstablishmentDto[]> {
+    return this.establishmentService.pegarPorTipo(tipo.toLowerCase());
+  }
+
+  @Get('id/:id')
+  async getById(@Param('id') id: string): Promise<EstablishmentDto> {
+    return this.establishmentService.pegarPorId(id); 
+  }
+
+  @Post('add/tipo')
+  async addTipos(@Body() tipo: TypeDto): Promise<TypeDto> {
+    return this.establishmentService.adicionartipos(tipo); 
+  }
+
+  @Post('/reserva/remove')
+  async removeReserva(@Body() reserva: Reserva): Promise<GenericMessage> {
+    return this.establishmentService.removeReserva(reserva); 
   }
 }
