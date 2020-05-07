@@ -24,6 +24,11 @@ export class EstablishmentController {
     return this.establishmentService.pegarPorTipo(tipo.toLowerCase());
   }
 
+  @Get('/:nome/:tipo')
+  async getByNameAndType(@Param('tipo') tipo: string, @Param('nome') nome: string): Promise<EstablishmentDto[]> {
+    return this.establishmentService.pegarPorTipoENome(tipo, nome); 
+  }
+
   @Get('id/:id')
   async getById(@Param('id') id: string): Promise<EstablishmentDto> {
     return this.establishmentService.pegarPorId(id); 
