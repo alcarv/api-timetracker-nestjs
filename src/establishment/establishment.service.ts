@@ -17,6 +17,10 @@ export class EstablishmentService {
             return await this.establishmentModel.find({arrTipo: { $regex: '.*' + tipo + '.*' } }).exec();
         }
 
+        async pegarPorTipoENome(tipo: string, nome: string): Promise<EstablishmentDto[]> {
+            return await this.establishmentModel.find({nome: { $regex: '.*' + nome + '.*' }}).exec();
+        }
+
         async filtrarTipos(filtro: string): Promise<TypeDto[]> {
             return await this.typeModel.find({nome: { $regex: '.*' + filtro + '.*' } }).exec();
         }
