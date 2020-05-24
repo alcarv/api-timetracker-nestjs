@@ -15,4 +15,5 @@ import { TypeSchema } from 'src/models/schemas/types.schema';
   providers: [EstablishmentService],
   exports: [EstablishmentService]
 })
+// autoDeploy
 export class EstablishmentModule {}
