@@ -54,6 +54,9 @@
     "typescript": "^3.7.4",
     "webpack-node-externals": "^1.7.2"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "jest": {
     "moduleFileExtensions": [
       "js",
