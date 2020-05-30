@@ -24,5 +24,6 @@ export const EstablishmentSchema = new mongoose.Schema({
         cliente: String,
         email: String,
         formaPgto: String,
+        servico: String
     }]
 });
