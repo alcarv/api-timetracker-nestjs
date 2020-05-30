@@ -22,5 +22,6 @@ export class EstablishmentDto {
         cliente: String;
         email: String;
         formaPgto: String;
+        servico: String;
     }]
 }

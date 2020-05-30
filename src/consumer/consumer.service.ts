@@ -20,7 +20,8 @@ export class ConsumerService {
             horario: reserva.horario,
             cliente: reserva.nome,
             email: reserva.email,
-            formaPgto: reserva.formaPgto
+            formaPgto: reserva.formaPgto,
+            servico: reserva.servico
         })
 
         await this.establishmentModel.findByIdAndUpdate(reserva.idEstab, estab);
@@ -29,6 +30,8 @@ export class ConsumerService {
             resolve();
         }).then(res => {
             return new GenericMessage(200, "Reserva Realizada");
+        }).catch(err => {
+            return new GenericMessage(500, err);
         })
     }
 
